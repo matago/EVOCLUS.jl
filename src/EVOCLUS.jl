@@ -12,6 +12,8 @@ module EVOCLUS
   include("recombinations.jl")
   ## Mutations
   include("mutations.jl")
+  ## Selections
+  include("selections.jl")
 
 end # module
 

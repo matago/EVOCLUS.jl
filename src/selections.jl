@@ -45,30 +45,15 @@ end
 function roulette(fitness::Vector{Float64}, N::Integer)
   n = length(fitness)
   wv = weights(fitness.^-1)
-  sample(1:n,wv,N,replace = false)
+  sample(1:n,wv,N,replace = true)
 end
 
 # Stochastic universal sampling (SUS)
-function sus(fitness::Vector{Float64}, N::Int)
-    invFit = fitness.^-1
-    P = sum(invFit)/N
-    srt = P*rand()
-    selected = zeros(Int64,N)
-    cumFit = cumsum(invFit)
-    k = 0
-    for i in 1:length(fitness)
-      idx = inmap(zero(Int64),selected)
-      if idx != zero(Int) && cumFit[i] > srt+(P*k)
-        selected[idx] = i
-        k += 1
-      end
-    end
-    return selected
+function sus(fitness::Vector{Float64}, N::Integer)
+  n = length(fitness)
+  @assert N <= n "Number of selections (N) must be less than numeber of elements"
+  wv = weights(fitness.^-1)
+  sample(1:n,wv,N,replace = false)
 end
 
-@time x = sus(a,10)
-@time sus(a,10)
-@time sus(a,10)
-@time sus(a,10)
-@time sus(a,10)
 

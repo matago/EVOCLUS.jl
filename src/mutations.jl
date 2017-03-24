@@ -56,14 +56,5 @@ function shifting!{T <: Vector}(recombinant::T)
 end
 
 
-# Utils
-# =====
-function swap!{T <: Vector}(v::T, from::Int, to::Int)
-    val = v[from]
-    v[from] = v[to]
-    v[to] = val
-end
-
-
 
 
