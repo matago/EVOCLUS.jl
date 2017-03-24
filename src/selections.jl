@@ -66,34 +66,6 @@ function sus(fitness::Vector{Float64}, N::Int)
     return selected
 end
 
-# Utils: selection
-function pselection(prob::Vector{Float64}, N::Int)
-    cp = cumsum(prob)
-    selected = Array(Int,N)
-    for i in 1:N
-        j = 1
-        r = rand()
-        while cp[j] < r
-            j += 1
-        end
-        selected[i] = j
-    end
-    return selected
-end
-
-function inmap{T}(v::T, c::Vector{T}, from::Integer = 1, to::Integer = length(c))
-    exists = 0
-    for j in from:to
-        if exists == 0 && v == c[j]
-            exists = j
-        end
-    end
-    return exists
-end
-
-a = rand(100)
-
-
 @time x = sus(a,10)
 @time sus(a,10)
 @time sus(a,10)
