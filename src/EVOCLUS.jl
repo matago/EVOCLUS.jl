@@ -1,5 +1,7 @@
 module EVOCLUS
 
+  using StatsBase
+
   export # Mutations
          inversion!, insertion!, swap2!, scramble!, shifting!,
          # Recombinations
