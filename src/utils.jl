@@ -21,3 +21,21 @@ function swap!{T <: Vector}(v::T, from::Int, to::Int)
     v[from] = v[to]
     v[to] = val
 end
+
+# Inverts an objective funtion
+function inverseFunc(f::Function)
+  function fitnessFunc{T <: Vector}(x::T)
+    return 1.0/(f(x)+eps())
+  end
+  return fitnessFunc
+end
+
+# Collecting interim values
+function keep(interim, v, vv, col)
+    if interim
+        if !haskey(col, v)
+            col[v] = typeof(vv)[]
+        end
+        push!(col[v], vv)
+    end
+end

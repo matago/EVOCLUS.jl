@@ -24,7 +24,7 @@ function tournament(groupSize::Integer)
     nF = length(fitness)
 
     for i in 1:N
-      contenders = sample(1:nF,groupSize,replace = false)
+      contenders = sample(1:nF,groupSize,replace = true)
       winner = first(contenders)
       wf = fitness[winner]
       for k in 2:groupSize
