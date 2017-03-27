@@ -39,3 +39,11 @@ function keep(interim, v, vv, col)
         push!(col[v], vv)
     end
 end
+
+# ReBalance a Permuation to start at 1
+function rebalTo1{T <: Integer}(v::Vector{T})
+  n = length(v)
+  k = inmap(one(T),v)
+  v = v[vcat(k:n,1:k-1)]
+  return v
+end

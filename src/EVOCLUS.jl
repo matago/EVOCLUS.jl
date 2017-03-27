@@ -7,7 +7,9 @@ module EVOCLUS
          # Recombinations
          pmx, cx, ox1, ox2, pos,
          # Selections
-         ranklinear, tournament, roulette, sus
+         ranklinear, tournament, roulette, sus,
+         # Algorithms
+         sGA
 
 
   ## Recombinations
@@ -16,6 +18,10 @@ module EVOCLUS
   include("mutations.jl")
   ## Selections
   include("selections.jl")
+  ## Utilities
+  include("utils.jl")
+  ## simple GA
+  include("sGA.jl")
 
 end # module
 
