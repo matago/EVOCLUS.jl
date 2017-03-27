@@ -10,7 +10,7 @@
 #              ɛ: Positive integer specifies how many individuals in the current generation
 #                 are guaranteed to survive to the next generation.
 #                 Floating number specifies fraction of population.
-#              
+#
 #
 function sGA(objfun::Function,
              N::Int,
@@ -101,7 +101,6 @@ function sGA(objfun::Function,
 
         # Verbose step
         (mod(itr,vstep) == 0) && println("BEST:", bestFitness, " : ", "G: ", itr)
-        (mod(itr,vstep) == 0) && println("BEST:", fitness)
 
 
         # Terminate:
