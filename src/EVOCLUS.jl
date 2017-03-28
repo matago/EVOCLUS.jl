@@ -9,7 +9,9 @@ module EVOCLUS
          # Selections
          ranklinear, tournament, roulette, sus,
          # Algorithms
-         sGA
+         sGA,
+         # Population Generators
+         permGen, clustGen
 
 
   ## Recombinations
@@ -22,6 +24,8 @@ module EVOCLUS
   include("utils.jl")
   ## simple GA
   include("sGA.jl")
+  ## Generators
+  include("generators.jl")
 
 end # module
 
