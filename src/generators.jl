@@ -41,8 +41,8 @@ function Gen_clust{T<:Real}(D::DenseMatrix{T}, ϵ::Real, minpts::Int)
     tgt = zeros(Int,N)
     p = 1
     for i in randperm(k)
-      l-1 = length(cmap[i])
-      tgt[p:p-1+l] = cmap[i]
+      l = length(cmap[i])
+      tgt[p:p+l-1] = cmap[i]
       p += l
     end
     return tgt

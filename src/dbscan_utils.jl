@@ -39,8 +39,6 @@ function nonZeros{T <: Real}(A::Matrix{T})
   return NZs
 end
 
-function
-
 function Knearest{T <: Real}(A::Matrix{T},k::Int)
   n = size(A,2)
   mins = zeros(T,n)
