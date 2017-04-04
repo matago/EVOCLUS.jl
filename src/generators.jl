@@ -9,20 +9,20 @@ end
 
 # Kmedian epsilon with K minpts
 function Gen_Kmedian{T <: Real}(A::Matrix{T},k::Int)
-  eps = eps_Kmedian(A,k)
-  return Gen_clust(A,eps,k)
+  ϵ = eps_Kmedian(A,k)
+  return Gen_clust(A,ϵ,k)
 end
 
 # Kmean epsilon with K minpts
 function Gen_Kmean{T <: Real}(A::Matrix{T},k::Int)
-  eps = eps_Kmean(A,k)
-  return Gen_clust(A,eps,k)
+  ϵ = eps_Kmean(A,k)
+  return Gen_clust(A,ϵ,k)
 end
 
 # Grid estimate (uniform) epsilon with K minpts
 function Gen_Kgrid{T <: Real}(A::Matrix{T},k::Int)
-  eps = eps_grid(A)
-  return Gen_clust(A,eps,k)
+  ϵ = eps_grid(A)
+  return Gen_clust(A,ϵ,k)
 end
 
 # Sample random from K [median,85%] epsilon with K minpts
@@ -31,9 +31,9 @@ function Gen_Km85{T <: Real}(A::Matrix{T},k::Int)
   return Gen_clust(A,eps,k)
 end
 
-# Generic cluster generator function 
-function Gen_clust{T<:Real}(D::DenseMatrix{T}, eps::Real, minpts::Int)
-  rslt = dbscan(D,eps,minpts)
+# Generic cluster generator function
+function Gen_clust{T<:Real}(D::DenseMatrix{T}, ϵ::Real, minpts::Int)
+  rslt = dbscan(D,ϵ,minpts)
   fillZero!(rslt.assignments)
   cmap = clustmap(rslt.assignments)
   k = length(keys(cmap))
