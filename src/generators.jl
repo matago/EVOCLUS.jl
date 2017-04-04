@@ -1,11 +1,38 @@
 ## Permutation Population Generators
 
 #random
-function permGen(N::Int)
-  randperm(N)
+function Gen_perm(N::Int)
+  function rperm(N::Int)
+    return randperm(N)
+  end
 end
 
-function clustGen{T<:Real}(D::DenseMatrix{T}, eps::Real, minpts::Int)
+# Kmedian epsilon with K minpts
+function Gen_Kmedian{T <: Real}(A::Matrix{T},k::Int)
+  eps = eps_Kmedian(A,k)
+  return Gen_clust(A,eps,k)
+end
+
+# Kmean epsilon with K minpts
+function Gen_Kmean{T <: Real}(A::Matrix{T},k::Int)
+  eps = eps_Kmean(A,k)
+  return Gen_clust(A,eps,k)
+end
+
+# Grid estimate (uniform) epsilon with K minpts
+function Gen_Kgrid{T <: Real}(A::Matrix{T},k::Int)
+  eps = eps_grid(A)
+  return Gen_clust(A,eps,k)
+end
+
+# Sample random from K [median,85%] epsilon with K minpts
+function Gen_Km85{T <: Real}(A::Matrix{T},k::Int)
+  eps = eps_randm85(A,k)
+  return Gen_clust(A,eps,k)
+end
+
+# Generic cluster generator function 
+function Gen_clust{T<:Real}(D::DenseMatrix{T}, eps::Real, minpts::Int)
   rslt = dbscan(D,eps,minpts)
   fillZero!(rslt.assignments)
   cmap = clustmap(rslt.assignments)

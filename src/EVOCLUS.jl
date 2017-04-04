@@ -11,7 +11,12 @@ module EVOCLUS
          # Algorithms
          sGA,
          # Population Generators
-         permGen, clustGen
+         Gen_perm, clustGen,
+         ## Auto Population Generators
+         Gen_Kmedian, Gen_Kmean, Gen_Kgrid, Gen_Km85,
+         # DBSCAN epsilon derivation methods
+         eps_Kmedian, eps_Kmean, eps_grid, eps_randm85
+
 
 
   ## Recombinations
@@ -26,6 +31,8 @@ module EVOCLUS
   include("sGA.jl")
   ## Generators
   include("generators.jl")
+  ## DBSCAN Utilities
+  include("dbscan_utils.jl")
 
 end # module
 
