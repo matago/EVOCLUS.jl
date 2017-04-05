@@ -27,7 +27,9 @@ function sGA(objfun::Function,
              tolIter = 10,
              vstep::Int = iterations,
              rebal = false,
-             interim = false)
+             inform = true,
+             robust = false,
+             signature::String = "TSP$N")
 
     store = Dict{Symbol,Any}()
 
@@ -36,7 +38,8 @@ function sGA(objfun::Function,
     fitFunc = inverseFunc(objfun)
 
     # Initialize population
-    fitness = zeros(populationSize)
+    fitness = zeros(Float64,populationSize)
+    trueFit = zeros(Float64,populationSize)
     population = Array(Vector{Int}, populationSize)
     offspring = similar(population)
 
@@ -46,7 +49,17 @@ function sGA(objfun::Function,
       fitness[i] = fitFunc(population[i])
     end
     fitidx = sortperm(fitness, rev = true)
-    keep(interim, :fitness, copy(fitness), store)
+
+    #store descriptive information about run
+    keep(inform, :selection, string(selection), store)
+    keep(inform, :crossover, string(crossover), store)
+    keep(inform, :mutation, string(mutation), store)
+    keep(inform, :cxRate, crossoverRate, store)
+    keep(inform, :mxRate, mutationRate, store)
+    keep(inform, :elite, elite, store)
+    keep(inform, :popsize, populationSize, store)
+    keep(inform, :id, signature, store)
+    keep(inform, :ipop, initPopulation, store)
 
     # Generate and evaluate offspring
     itr = 1
@@ -65,7 +78,7 @@ function sGA(objfun::Function,
             if rand() < crossoverRate
                 offspring[i], offspring[j] = crossover(population[selected[offidx[i]]], population[selected[offidx[j]]])
             else
-                offspring[i], offspring[j] = population[selected[i]], population[selected[j]]
+                offspring[i], offspring[j] = copy(population[selected[i]]), copy(population[selected[j]])
             end
         end
 
@@ -86,18 +99,26 @@ function sGA(objfun::Function,
 
         # New generation
         for i in 1:populationSize
-            population[i] = offspring[i]
+            population[i] = copy(offspring[i])
             fitness[i] = fitFunc(offspring[i])
+            trueFit[i] = objfun(offspring[i])
             rebal && (population[i] = rebalTo1(population[i]))
         end
         fitidx = sortperm(fitness, rev = true)
+        ss = summarystats(trueFit)
+
+        # Store generational Data
+        keep(robust, :min, ss.min, store)
+        keep(robust, :max, ss.max, store)
+        keep(robust, :mean, ss.mean, store)
+        keep(robust, :median, ss.median, store)
+
         bestIndividual = fitidx[1]
-        curGenFitness = Float64(objfun(population[bestIndividual]))
+
+        curGenFitness = ss.min
         fittol = abs(bestFitness - curGenFitness)
         bestFitness = curGenFitness
 
-        keep(interim, :fitness, copy(fitness), store)
-        keep(interim, :bestFitness, bestFitness, store)
 
         # Verbose step
         (mod(itr,vstep) == 0) && println("BEST:", bestFitness, " : ", "G: ", itr)
@@ -120,6 +141,9 @@ function sGA(objfun::Function,
         end
         itr += 1
     end
+    keep(inform, :best, bestFitness, store)
+    keep(inform, :pop, population, store)
 
-    return population[bestIndividual], bestFitness, itr, fittol, store
+    # return population[bestIndividual], bestFitness, itr, fittol, store
+    return store
 end

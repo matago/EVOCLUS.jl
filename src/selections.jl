@@ -1,5 +1,3 @@
-using StatsBase
-
 # Rank-based fitness assignment
 # sp - selective linear presure in [1.0, 2.0]
 function ranklinear(sp::Float64)
