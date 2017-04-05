@@ -59,7 +59,7 @@ function sGA(objfun::Function,
     keep(inform, :elite, elite, store)
     keep(inform, :popsize, populationSize, store)
     keep(inform, :id, signature, store)
-    keep(inform, :ipop, initPopulation, store)
+    keep(inform, :ipop, string(initPopulation), store)
 
     # Generate and evaluate offspring
     itr = 1
