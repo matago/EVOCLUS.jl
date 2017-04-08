@@ -10,9 +10,10 @@
 #              ɛ: Positive integer specifies how many individuals in the current generation
 #                 are guaranteed to survive to the next generation.
 #                 Floating number specifies fraction of population.
+#      rebalRate: Similar to mutationRate, probability of reset to cluster
+#                 during each iterations
 #
-#
-function rclGA(objfun::Function,
+function rb1GA(objfun::Function,
                N::Int,
                initPopulation::Function = randperm,
                populationSize::Int = 50,
