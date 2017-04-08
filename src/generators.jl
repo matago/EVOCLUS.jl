@@ -37,6 +37,9 @@ function Gen_clust{T<:Real}(D::DenseMatrix{T}, ϵ::Real, minpts::Int)
   fillZero!(rslt.assignments)
   cmap = clustmap(rslt.assignments)
   k = length(keys(cmap))
+  n = length(rslt.assignments)
+
+  #Random Cluster Intialization
   function clustPop(N::Int)
     tgt = zeros(Int,N)
     p = 1
@@ -47,7 +50,17 @@ function Gen_clust{T<:Real}(D::DenseMatrix{T}, ϵ::Real, minpts::Int)
     end
     return tgt
   end
-  return clustPop
+
+  #Mean cluster position ReBalance
+  function balancePop{T <: Integer}(v::Vector{T})
+    mean_pos = zeros(Float64,n)
+    for i in 1:k
+      mean_pos[i] = mean(indexin(cmap[i],v))
+    end
+    return v[sortperm(mean_pos)]
+  end
+
+  return clustPop, balancePop
 end
 
 
