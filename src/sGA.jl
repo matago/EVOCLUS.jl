@@ -23,12 +23,12 @@ function sGA(objfun::Function,
              crossover::Function = ((x,y)->(y,x)),
              mutation::Function = (x->x),
              iterations::Int = 10*N,
-             tol = 0.0,
-             tolIter = 10,
+             tol::Float64 = 0.0,
+             tolIter::Int = 10,
              vstep::Int = iterations,
-             rebal = false,
-             inform = true,
-             robust = false,
+             rebal::Bool = false,
+             inform::Bool = true,
+             robust::Bool = false,
              signature::String = "TSP$N")
 
     store = Dict{Symbol,Any}()
