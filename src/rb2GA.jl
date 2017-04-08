@@ -89,9 +89,6 @@ function rb2GA(objfun::Function,
             if rand() < mutationRate
                 mutation(offspring[i])
             end
-            if rand() < rebalRate
-              offspring[i] = rebalancer(offspring[i])
-            end
         end
 
         if mod(itr,rebalStep) == 0
