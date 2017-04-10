@@ -1,15 +1,15 @@
 
-function pGA(objfun::Function,
+function pcGA(objfun::Function,
              vals::Vector{Int},
              actual::Bool
              )
     # Harbored Parameters
     N = length(vals)
-    iterations = 10*N
+    iterations = 50*N
     initPopulation = randperm
     populationSize = 50
     crossoverRate = 0.5
-    mutationRate = 0.5
+    mutationRate = 0.25
     selection = tournament(2)
     crossover = ox1
     mutation = swap2!

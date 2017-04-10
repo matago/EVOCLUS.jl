@@ -33,8 +33,8 @@ function PGen_clust{T<:Real}(D::DenseMatrix{T}, ϵ::Real, minpts::Int)
   #solver for the high level clusters of GA
   #the function will eventually return a generator
   function solveTop(pfx::Function)
-    tops = zero(Int,k)
-    bottoms = zero(Int,k)
+    tops = zeros(Int,k)
+    bottoms = Vector{Vector{Int}}(k)
     #Extract a random cluster member to represent cluster
     for i in 1:k
       tops[i] = rand(cmap[i])
