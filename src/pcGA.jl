@@ -78,5 +78,6 @@ function pGA(objfun::Function,
       out = vals[population[fitidx[1]]]
     else
       out = population[fitidx[1]]
+    end
     return out
 end
