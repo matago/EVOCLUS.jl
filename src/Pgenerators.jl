@@ -35,10 +35,12 @@ function PGen_clust{T<:Real}(D::DenseMatrix{T}, ϵ::Real, minpts::Int)
   function solveTop(pfx::Function)
     tops = zero(Int,k)
     bottoms = zero(Int,k)
+    #Extract a random cluster member to represent cluster
     for i in 1:k
       tops[i] = rand(cmap[i])
     end
     cord = pcGA(pfx,tops,false)
+    #shortest path for each cluster
     for i in 1:k
       bottoms[i] = pcGA(pfx,cmap[i],true)
     end
