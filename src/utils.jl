@@ -47,3 +47,26 @@ function rebalTo1{T <: Integer}(v::Vector{T})
   v = v[vcat(k:n,1:k-1)]
   return v
 end
+
+#Utilities
+function clustmap{T}(a::AbstractArray{T})
+    d = Dict{T,Vector{Int}}()
+    for i = 1 : length(a)
+        @inbounds k = a[i]
+        if !haskey(d, k)
+            d[k] = findin(a,k)
+        end
+    end
+    return d
+end
+
+function fillZero!{T <: Integer}(v::Vector{T})
+  k = 1
+  for i in 1:length(v)
+    if v[i] == zero(T)
+      v[i] = k
+      k += 1
+    end
+  end
+  return v
+end

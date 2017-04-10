@@ -9,11 +9,13 @@ module EVOCLUS
          # Selections
          ranklinear, tournament, roulette, sus,
          # Algorithms
-         sGA,
+         sGA, pcGA,
          # Population Generators
          Gen_perm, clustGen,
          ## Auto Population Generators
          Gen_Kmedian, Gen_Kmean, Gen_Kgrid, Gen_Km85,
+         ## Partial Solve Pop Generators
+         PGen_Kmedian, PGen_Kmean, PGen_Kgrid, PGen_Km85,
          # DBSCAN epsilon derivation methods
          eps_Kmedian, eps_Kmean, eps_grid, eps_randm85
 
@@ -29,8 +31,12 @@ module EVOCLUS
   include("utils.jl")
   ## simple GA
   include("sGA.jl")
+  ## partial GA
+  include("pcGA.jl")
   ## Generators
   include("generators.jl")
+  ## Partial Solve Generators
+  include("Pgenerators.jl")
   ## DBSCAN Utilities
   include("dbscan_utils.jl")
 
