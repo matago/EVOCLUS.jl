@@ -9,7 +9,7 @@ module EVOCLUS
          # Selections
          ranklinear, tournament, roulette, sus,
          # Algorithms
-         sGA, pcGA,
+         sGA, pcGA, parGA,
          # Population Generators
          Gen_perm, clustGen,
          ## Auto Population Generators
@@ -33,6 +33,8 @@ module EVOCLUS
   include("sGA.jl")
   ## partial GA
   include("pcGA.jl")
+  ## parallel GA
+  include("parGA.jl")
   ## Generators
   include("generators.jl")
   ## Partial Solve Generators
