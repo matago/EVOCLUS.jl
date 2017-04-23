@@ -50,6 +50,13 @@ function Gen_clust{T<:Real}(D::DenseMatrix{T}, ϵ::Real, minpts::Int)
   return clustPop
 end
 
+#nearest neighbor generator
+function Gen_NN{T<:Real}(D::DenseMatrix{T})
+  function nnPop(N::Int)
+    nearest_neighbor(D,rand(1:N))
+  end
+  return nnPop
+end
 
 #Utilities
 function clustmap{T}(a::AbstractArray{T})

@@ -17,7 +17,12 @@ module EVOCLUS
          ## Partial Solve Pop Generators
          PGen_Kmedian, PGen_Kmean, PGen_Kgrid, PGen_Km85,
          # DBSCAN epsilon derivation methods
-         eps_Kmedian, eps_Kmean, eps_grid, eps_randm85
+         eps_Kmedian, eps_Kmean, eps_grid, eps_randm85,
+         # Nearest Neighbor
+         nearest_neighbor,
+         # 2-opt
+         two_opt, two_opt!
+
 
 
 
@@ -39,6 +44,10 @@ module EVOCLUS
   include("Pgenerators.jl")
   ## DBSCAN Utilities
   include("dbscan_utils.jl")
+  ## Nearest neighbor
+  include("nearest_neighbor.jl")
+  ## Two_opt
+  include("2-opt.jl")
 
 end # module
 
