@@ -13,7 +13,7 @@ module EVOCLUS
          # Population Generators
          Gen_perm, clustGen,
          ## Auto Population Generators
-         Gen_Kmedian, Gen_Kmean, Gen_Kgrid, Gen_Km85,
+         Gen_Kmedian, Gen_Kmean, Gen_Kgrid, Gen_Km85,Gen_NN,
          ## Partial Solve Pop Generators
          PGen_Kmedian, PGen_Kmean, PGen_Kgrid, PGen_Km85,
          # DBSCAN epsilon derivation methods
