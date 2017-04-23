@@ -1,7 +1,6 @@
 #nearest neighbors tour implementation
 
 function nearest_neighbor{T<:Real}(distmat::Matrix{T}, firstcity::Int = 0)
-  maxval = maximum(distmat)
 	numCities = size(distmat, 1)
 	# put first city on path
 	path = Vector{Int}()
