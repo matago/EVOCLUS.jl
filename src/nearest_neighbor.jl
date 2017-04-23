@@ -10,19 +10,17 @@ function nearest_neighbor{T<:Real}(distmat::Matrix{T}, firstcity::Int = 0)
 	end
 	push!(path, firstcity)
 	# cities to visit
-	citiesToVisit = setdiff(1:numCities,firstcity)
+	citiesToVisit = setdiff(1:numCities,path)
 	# nearest neighbor loop
 	while !isempty(citiesToVisit)
 		curCity = path[end]
     dists = distmat[citiesToVisit,curCity]
-    _,tmp = findmin(dists)
-    dists[tmp] = maxval
 		_, nextInd = findmin(dists)
 		nextCity = citiesToVisit[nextInd]
 		push!(path, nextCity)
 		deleteat!(citiesToVisit, nextInd)
 	end
-  
+
 	return path
 end
 
