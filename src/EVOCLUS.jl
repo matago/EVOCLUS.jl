@@ -20,6 +20,8 @@ module EVOCLUS
          eps_Kmedian, eps_Kmean, eps_grid, eps_randm85,
          # Nearest Neighbor
          nearest_neighbor,
+         # Greedy
+         greedy,
          # 2-opt
          two_opt, two_opt!
 
@@ -46,6 +48,8 @@ module EVOCLUS
   include("dbscan_utils.jl")
   ## Nearest neighbor
   include("nearest_neighbor.jl")
+  ## Greedy
+  include("greedy.jl")
   ## Two_opt
   include("2-opt.jl")
 
