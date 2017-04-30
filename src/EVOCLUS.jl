@@ -1,6 +1,6 @@
 module EVOCLUS
 
-  using StatsBase, Clustering
+  using StatsBase, Clustering, LightGraphs
 
   export # Mutations
          inversion!, insertion!, swap2!, scramble!, shifting!,
