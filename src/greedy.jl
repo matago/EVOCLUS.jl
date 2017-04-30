@@ -23,8 +23,7 @@ function greedy{T<:Real}(distmat::Matrix{T})
   end
   #final edge addition
   add_edge!(G,findin(degree(G),1)...)
-  return G
-  # return saw(G,1,numCities)
+  return saw(G,1,numCities)
 end
 
 function independent(G::Graph,dnode::Int,anode::Int)
