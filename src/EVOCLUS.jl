@@ -24,6 +24,8 @@ module EVOCLUS
          clearest_neighbor,
          # Greedy
          greedy,
+         # Clustered Greedy
+         creedy,
          # 2-opt
          two_opt, two_opt!
 
@@ -54,6 +56,8 @@ module EVOCLUS
   include("clearest_neighbor.jl")
   ## Greedy
   include("greedy.jl")
+  ## Clustered Greedy
+  include("creedy.jl")
   ## Two_opt
   include("2-opt.jl")
 
