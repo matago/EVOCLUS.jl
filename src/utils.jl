@@ -70,3 +70,15 @@ function fillZero!{T <: Integer}(v::Vector{T})
   end
   return v
 end
+
+#Graph Utilities
+#check if two nodes are connected
+function independent(G::Graph,dnode::Int,anode::Int)
+  valid = true
+  for vset in connected_components(G)
+    if valid && in(dnode,vset) && in(anode,vset)
+      valid = false
+    end
+  end
+  return valid
+end

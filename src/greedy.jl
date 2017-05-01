@@ -26,13 +26,3 @@ function greedy{T<:Real}(distmat::Matrix{T})
   return saw(G,1,numCities)
 end
 
-function independent(G::Graph,dnode::Int,anode::Int)
-  valid = true
-  for vset in connected_components(G)
-    if valid && in(dnode,vset) && in(anode,vset)
-      valid = false
-    end
-  end
-  return valid
-end
-
