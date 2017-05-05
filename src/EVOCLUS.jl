@@ -17,7 +17,7 @@ module EVOCLUS
          ## Partial Solve Pop Generators
          PGen_Kmedian, PGen_Kmean, PGen_Kgrid, PGen_Km85,
          # DBSCAN epsilon derivation methods
-         eps_Kmedian, eps_Kmean, eps_grid, eps_randm85,
+         eps_Kmedian, eps_Kmean, eps_grid, eps_randm85,eps_Q,
          # Nearest Neighbor
          nearest_neighbor,
          # Clustered Nearest Neighbor

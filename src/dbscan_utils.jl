@@ -21,6 +21,12 @@ function eps_randm85{T <: Real}(A::Matrix{T},k::Int)
   return quantile(Knearest(A,k),i)
 end
 
+#derivce epsilon from quanitle at K level
+function eps_Q{T <: Real}(A::Matrix{T},Q::Float64,k::Int)
+  @assert 0.0 <= Q <= 1.0 "Quantile Q must be in range [0.0, 1.0]."
+  return quantile(Knearest(A,k),Q)
+end
+
 #= Strip all zero values and return a vector
     of all remaining entities =#
 function nonZeros{T <: Real}(A::Matrix{T})
