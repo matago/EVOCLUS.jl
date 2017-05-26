@@ -52,7 +52,7 @@ function Knearest{T <: Real}(A::Matrix{T},k::Int)
     a = A[:,i]
     mins[i] = a[sortperm(a)[k+1]]
   end
-  return mins
+  return sort(mins)
 end
 
 
