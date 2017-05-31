@@ -25,7 +25,7 @@ module EVOCLUS
          # Greedy
          greedy,
          # Clustered Greedy
-         creedy,
+         creedy,pcreedy,
          # 2-opt
          two_opt, two_opt!
 
