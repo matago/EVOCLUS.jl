@@ -25,7 +25,7 @@ module EVOCLUS
          # Greedy
          greedy,
          # Clustered Greedy
-         creedy,
+         creedy, Kcreedy, APcreedy,
          # 2-opt
          two_opt, two_opt!
 
@@ -58,6 +58,8 @@ module EVOCLUS
   include("greedy.jl")
   ## Clustered Greedy
   include("creedy.jl")
+  include("Kcreedy.jl")
+  include("APcreedy.jl")
   ## Two_opt
   include("2-opt.jl")
 
