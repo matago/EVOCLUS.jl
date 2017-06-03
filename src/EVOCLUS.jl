@@ -21,7 +21,7 @@ module EVOCLUS
          # Nearest Neighbor
          nearest_neighbor,
          # Clustered Nearest Neighbor
-         clearest_neighbor,
+         clearest_neighbor, Kclearest_neighbor, APclearest_neighbor,
          # Greedy
          greedy,
          # Clustered Greedy
@@ -54,6 +54,8 @@ module EVOCLUS
   include("nearest_neighbor.jl")
   ## Clustered nearest_neighbor
   include("clearest_neighbor.jl")
+  include("Kclearest_neighbor.jl")
+  include("APclearest_neighbor.jl")
   ## Greedy
   include("greedy.jl")
   ## Clustered Greedy
